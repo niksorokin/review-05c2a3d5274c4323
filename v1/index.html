@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang='en'><head><meta name="robots" content="noindex,nofollow,noarchive"><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Team AI — Concept presentation</title>
+<style>
+:root{--paper:#F4F1EA;--card:#FFFFFF;--ink:#16181D;--ink2:#4B4F58;--ink3:#8B8E95;--line:#DDD7CB;--soft:#EEE9DF;--night:#111317;--accent:#2E4BE0;--accent2:#8DA0FF;--amber:#C7791F;--amberbg:#FCEFD9;--green:#24774A;--greenbg:#E3F1E8;--sans:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;--mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace}
+*{box-sizing:border-box}html,body{margin:0;padding:0}
+body{background:#0D0E11;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3,p,ul{margin:0;padding:0}ul{list-style:none}
+.deck{width:1440px;margin:0 auto;padding:24px 0}
+.slide{position:relative;width:1440px;height:810px;overflow:hidden;background:var(--paper);padding:72px 96px 0;margin:0 auto 24px}
+body.present{overflow:hidden;height:100vh}
+.present .deck{position:fixed;left:0;top:0;padding:0;margin:0;transform-origin:0 0}
+.present .slide{display:none;margin:0}.present .slide.active{display:block}
+.dark{background:var(--night);color:#ECEAE4}
+.foot{position:absolute;left:96px;right:96px;bottom:30px;display:flex;justify-content:space-between;font:500 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.dark .foot{color:#6C7079}
+.kicker{display:flex;align-items:center;gap:12px;font:600 13px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.kicker:before{content:'';width:28px;height:2px;background:currentColor}
+.dark .kicker{color:var(--accent2)}
+.h2{font-size:52px;line-height:1.06;letter-spacing:-.028em;font-weight:650;margin-top:22px;max-width:1080px}
+.h2.s{font-size:44px;max-width:860px}
+.head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:56px}
+.head-row .lede{width:380px;flex:none;font-size:16.5px;line-height:1.5;color:var(--ink2);padding-bottom:4px}
+.win{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -32px rgba(22,24,29,.35),0 2px 6px rgba(22,24,29,.04)}
+.bar{height:46px;display:flex;align-items:center;gap:14px;padding:0 18px;border-bottom:1px solid var(--soft);font-size:13.5px;color:var(--ink2);background:#FCFBF8}
+.dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#DCD6CA;display:block}
+.bar b{color:var(--ink);font-weight:600}
+.cpt{margin-left:auto;font:600 10.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#9A5A12;background:#FFF3E0;border:1px dashed #DE9F52;padding:6px 10px;border-radius:999px;white-space:nowrap}
+.st{display:inline-flex;align-items:center;gap:6px;font:600 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:6px;white-space:nowrap}
+.st:before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.run{background:var(--greenbg);color:var(--green)}.wait{background:var(--amberbg);color:#94550F}.done{background:#ECEDEF;color:#4B4F58}.idle{background:#E8ECFF;color:#2E4BE0}.off{background:#F3E6E4;color:#9C3B2E}
+.av{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;font:700 10px/1 var(--sans);color:#fff;flex:none}
+.a1{background:#2E4BE0}.a2{background:#24774A}.a3{background:#B5651D}.a4{background:#7A4FC4}.a5{background:#B2384F}.a6{background:#1F7A8C}.a7{background:#5C6170}
+.who{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink)}.who span{line-height:1.25}.who small{color:var(--ink3);font-size:11.5px}
+.tool{display:inline-block;font:500 11px/1 var(--mono);color:var(--ink2);background:var(--soft);border-radius:5px;padding:5px 7px;margin:2px 4px 2px 0;white-space:nowrap}
+.model{font:600 12px/1 var(--mono);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:5px 8px;white-space:nowrap}
+.btn{display:inline-block;font-size:12.5px;font-weight:600;border-radius:8px;padding:8px 12px;border:1px solid var(--line);background:#fff;color:var(--ink)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+/* 01 */
+.hero{font-size:76px;line-height:1.02;letter-spacing:-.035em;font-weight:650;margin-top:104px;max-width:790px}
+.hero span{display:block;color:var(--accent2)}
+.hero-sub{margin-top:36px;max-width:640px;font-size:20px;line-height:1.55;color:#A9ADB6}
+.orbit{position:absolute;right:96px;top:160px}
+.legend{position:absolute;right:96px;top:622px;width:440px;display:flex;justify-content:center;gap:26px;font:500 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#7D828C}
+.legend span{display:flex;align-items:center;gap:8px}.legend i{display:block;width:10px;height:10px}
+/* 02 */
+.s2grid{display:grid;grid-template-columns:740px 1fr;gap:52px;margin-top:36px;align-items:start}
+.aside .intro{font-size:17px;line-height:1.55;color:var(--ink2)}
+.aside .note{margin-top:22px;padding-top:22px;border-top:1px solid var(--line);font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.aside .note b{color:var(--ink)}
+.gaps{margin-top:16px;display:grid;gap:12px}
+.gaps li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:15px;line-height:1.45;color:var(--ink2)}
+.gaps li:before{content:'';width:10px;height:10px;margin-top:6px;border:2px solid var(--accent);border-radius:3px}
+.gaps b{color:var(--ink);font-weight:650}
+/* 03 */
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px}
+.tile .n{font:600 12px/1 var(--mono);color:var(--ink3);letter-spacing:.12em}
+.tile svg{display:block;width:40px;height:40px;margin:18px 0;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tile h3{font-size:23px;line-height:1.18;letter-spacing:-.015em;font-weight:650}
+.tile p{margin-top:12px;font-size:15.5px;line-height:1.5;color:var(--ink2)}
+.shift{margin-top:22px;display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;border-radius:18px;background:var(--night);color:#ECEAE4;padding:22px 32px}
+.shift .lab{font:600 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#7D828C;margin-bottom:10px}
+.shift .to .lab{color:var(--accent2)}.shift p{font-size:18px;line-height:1.4}.shift .from p{color:#9EA2AA}
+.shift .arr{font-size:28px;color:var(--accent2);text-align:center}
+/* 04 */
+.app{margin-top:30px;height:472px}
+.app .body{display:grid;grid-template-columns:200px 1fr;height:426px}
+.side{background:#FAF8F3;border-right:1px solid var(--soft);padding:18px 14px;font-size:13.5px;color:var(--ink2)}
+.ws{display:flex;align-items:center;gap:10px;font-weight:650;color:var(--ink);margin-bottom:14px}
+.ws i{width:24px;height:24px;border-radius:7px;background:var(--ink);display:block}
+.nav li{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-radius:8px;margin-bottom:2px}
+.nav li.on{background:#E8ECFF;color:var(--accent);font-weight:600}
+.nav .badge{font:700 10px/1 var(--mono);background:var(--amber);color:#fff;border-radius:999px;padding:3px 6px}
+.side .sub{font:600 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3);margin:14px 10px 8px}
+.main{padding:18px 24px}
+.mhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mhead h3{font-size:17px;font-weight:650;margin-right:8px}
+.chip{font-size:12px;color:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:5px 10px}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.mhead .btn{margin-left:auto}
+.tr{display:grid;grid-template-columns:2.2fr 1.6fr 1.1fr .7fr 1.2fr;gap:16px;align-items:center;padding:9px 4px;border-top:1px solid var(--soft)}
+.th{font:600 10.5px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);border-top:0;padding:6px 4px 8px}
+.bn{font-size:14px;font-weight:650;color:var(--ink)}.bd{font-size:12px;line-height:1.4;color:var(--ink3);margin-top:3px}
+/* 05 */
+.runb{display:grid;grid-template-columns:1.4fr 1fr;height:426px}
+.rl{padding:16px 26px}
+.meta{display:flex;gap:22px;align-items:center;font-size:12.5px;color:var(--ink3);padding-bottom:12px;border-bottom:1px solid var(--soft)}
+.meta b{color:var(--ink);font-weight:600}
+.step{display:grid;grid-template-columns:24px 1fr auto;gap:12px;align-items:center;padding:9px 0;border-bottom:1px dashed var(--soft)}
+.step:last-child{border-bottom:0}
+.ic{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 11px/1 var(--sans)}
+.ic.ok{background:var(--greenbg);color:var(--green)}.ic.ps{background:var(--amber);color:#fff}.ic.q{border:1.5px dashed #B9B4AA}
+.step .t{font-size:14px;font-weight:600;color:var(--ink)}.step .t .tool{margin:0 0 0 8px;vertical-align:1px}
+.step .d{font-size:12px;color:var(--ink3);margin-top:3px}
+.step .tm{font:500 11.5px/1 var(--mono);color:var(--ink3)}
+.step.hl{background:#FFF6E6;margin:0 -12px;padding:9px 12px;border-radius:10px;border-bottom:0}
+.rr{background:#FAF8F3;border-left:1px solid var(--soft);padding:20px 24px}
+.dl{font:600 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#94550F}
+.rr h3{font-size:20px;font-weight:650;margin-top:10px;letter-spacing:-.01em}
+.rr .by{font-size:12.5px;color:var(--ink3);margin-top:6px}
+.draft{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.5;color:var(--ink)}
+.draft .to{font:500 10.5px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:8px}
+.why{margin-top:12px;font-size:12.5px;line-height:1.45;color:var(--ink2)}
+.acts{display:flex;gap:8px;margin-top:14px}
+.after{margin-top:14px;font-size:12px;color:var(--ink3);line-height:1.45}
+/* 06 */
+.scale{display:flex;align-items:center;margin-top:34px;font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.scale .ln{flex:1;height:1px;background:linear-gradient(90deg,#C3CCF6,#C7791F);margin:0 16px}
+.tiers{margin-top:14px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 20px 18px;height:212px;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.tier:before{content:'';position:absolute;left:0;right:0;top:0;height:5px;background:var(--c)}
+.tier.x{background:transparent;border-style:dashed}
+.tier .lv{font:600 11px/1 var(--mono);letter-spacing:.12em;color:var(--ink3)}
+.tier h3{font-size:19px;line-height:1.2;font-weight:650;margin-top:12px;letter-spacing:-.01em}
+.tier p{font-size:14px;line-height:1.45;color:var(--ink2);margin-top:8px}
+.rule{margin-top:auto;font:600 10.5px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:7px 9px;border-radius:7px;align-self:flex-start}
+.log{margin-top:22px}
+.lg{padding:2px 20px 4px}
+.lr{display:grid;grid-template-columns:70px 190px 1fr 210px;padding:8px 0;border-top:1px solid var(--soft);font-size:13.5px;color:var(--ink2);align-items:center}
+.lr:first-child{border-top:0}.lr span:first-child{font-family:var(--mono);color:var(--ink3);font-size:12px}.lr span:last-child{text-align:right;font-family:var(--mono);font-size:11.5px;color:var(--ink3)}.lr b{color:var(--ink)}
+/* 07 */
+.board{display:grid;grid-template-columns:repeat(3,1fr);height:426px}
+.col{padding:16px 18px;border-right:1px solid var(--soft)}.col:last-child{border-right:0;background:#FFFAF1}
+.colh{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.cnt{font:700 11px/1 var(--mono);background:var(--soft);border-radius:999px;padding:4px 8px;color:var(--ink)}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.col:last-child .card{border-color:#EBCF9F}
+.card .t{font-size:14px;font-weight:650}.card .d{font-size:12.5px;color:var(--ink3);margin-top:4px;line-height:1.4}
+.card .f{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.card .btn{padding:5px 10px;font-size:12px}
+/* 08 */
+.flow{margin-top:40px;display:grid;grid-template-columns:repeat(5,1fr);gap:28px}
+.fs{position:relative;padding-top:18px;border-top:2px solid var(--ink)}
+.fs:after{content:'→';position:absolute;right:-24px;top:-12px;font-size:16px;color:var(--ink3);background:var(--paper);padding:0 3px}
+.fs:last-child:after{content:'↺';color:var(--accent)}
+.fs .n{font:600 12px/1 var(--mono);color:var(--accent);letter-spacing:.12em}
+.fs h3{font-size:20px;font-weight:650;margin-top:10px;letter-spacing:-.01em}
+.fs p{font-size:14.5px;line-height:1.45;color:var(--ink2);margin-top:8px}
+.s8b{display:grid;grid-template-columns:1.6fr 1fr;gap:28px;margin-top:34px}
+.vr{display:grid;grid-template-columns:40px 120px 1fr auto;gap:14px;align-items:center;padding:11px 20px;border-top:1px solid var(--soft);font-size:13.5px;color:var(--ink2)}
+.vr:first-child{border-top:0;background:#FFFAF1}
+.vn{font:700 12px/1 var(--mono);color:var(--ink)}
+.pull{background:var(--night);color:#ECEAE4;border-radius:16px;padding:28px 30px;display:flex;flex-direction:column;justify-content:space-between}
+.pull p{font-size:24px;line-height:1.3;letter-spacing:-.01em;font-weight:600}
+.pull small{font-size:14px;line-height:1.5;color:#9EA2AA}
+/* 09 */
+.s9grid{display:grid;grid-template-columns:740px 1fr;gap:56px;margin-top:38px}
+.stack{display:grid;gap:12px}
+.ly{border-radius:16px;padding:20px 26px}
+.ly .lab{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.ly h3{font-size:23px;font-weight:650;margin-top:10px;letter-spacing:-.015em}
+.ly1{background:var(--accent);color:#fff;padding:24px 26px}
+.ly1 .lab{color:#C9D2FF}
+.ly1 .chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.ly1 .chips span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 13px;font-size:14px}
+.ly2{background:var(--card);border:1px solid var(--line)}.ly2 .lab{color:var(--ink3)}.ly2 p{font-size:15px;color:var(--ink2);margin-top:6px}
+.ly3{border:1.5px dashed #B9B4AA}.ly3 .lab{color:var(--ink3)}.ly3 .row{display:flex;align-items:center;gap:10px;margin-top:12px}.ly3 p{font-size:14px;color:var(--ink2);margin-left:6px}
+.mean{display:grid;gap:24px;align-content:start}
+.mean .lab{font:600 11px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.mean .no .lab{color:#9C3B2E}
+.mean li{display:grid;grid-template-columns:22px 1fr;gap:8px;font-size:15.5px;line-height:1.45;color:var(--ink2);padding:9px 0;border-top:1px solid var(--line)}
+.mean li i{font-style:normal;font-weight:700;color:var(--accent)}.mean .no li i{color:#9C3B2E}
+/* 10 */
+.s10grid{display:grid;grid-template-columns:760px 1fr;gap:52px;margin-top:34px}
+.set{padding:18px 24px}
+.setl{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.lab2{font:600 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
+.opt{display:grid;grid-template-columns:20px 1fr auto;gap:12px;align-items:center;padding:10px 14px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px}
+.opt .r{width:16px;height:16px;border-radius:50%;border:1.5px solid #B9B4AA}
+.opt.sel{border-color:var(--accent);background:#F4F6FF}.opt.sel .r{border:5px solid var(--accent)}
+.opt b{font-size:14px}.opt div span{font-size:12.5px;color:var(--ink3);margin-left:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.box{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#FCFBF8}
+.box ul{margin-top:8px}.box li{display:flex;justify-content:space-between;font-size:13px;color:var(--ink2);padding:4px 0}
+.box li em{font:600 11px/1.6 var(--mono);font-style:normal;color:var(--green)}.box li em.a{color:#94550F}.box li em.g{color:var(--ink3)}
+.box .cap{font-size:12px;color:var(--ink3);margin-top:8px;line-height:1.4}
+.claims li{padding:16px 0;border-top:1px solid var(--line)}
+.claims .n{font:600 11px/1 var(--mono);color:var(--accent);letter-spacing:.12em}
+.claims h3{font-size:19px;font-weight:650;margin-top:8px}
+.claims p{font-size:15px;line-height:1.45;color:var(--ink2);margin-top:6px}
+.fine{margin-top:6px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.5;color:var(--ink3)}
+/* 11 */
+.big{font-size:64px;line-height:1.08;letter-spacing:-.03em;font-weight:650;margin-top:110px;max-width:1150px}
+.big span{display:block;margin-top:14px;color:var(--accent2)}
+.ba{position:absolute;left:96px;right:96px;bottom:100px;display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;border-top:1px solid #2A2E36;padding-top:28px}
+.ba .lab{font:600 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#6C7079;margin-bottom:12px}
+.ba p{font-size:22px;color:#8E929B}.ba .to .lab{color:var(--accent2)}.ba .to p{color:#fff}
+.ba .arr{font-size:28px;color:var(--accent2);text-align:center}
+/* 12 */
+.checks{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
+.ck{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;height:132px}
+.ck .n{font:600 11px/1 var(--mono);color:var(--accent);letter-spacing:.12em}
+.ck h3{font-size:18px;font-weight:650;margin-top:10px}
+.ck p{font-size:14px;line-height:1.45;color:var(--ink2);margin-top:6px}
+.s12b{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-top:20px}
+.nb{border-radius:14px;padding:20px 24px;background:var(--night);color:#C3C6CD;font-size:14.5px;line-height:1.5}
+.nb b{display:block;color:#fff;font-size:16px;margin-bottom:6px}
+.nb.lt{background:transparent;border:1.5px dashed #B9B4AA;color:var(--ink2)}.nb.lt b{color:var(--ink)}
+/* 13 */
+.close{margin-top:140px;font-size:84px;line-height:1.04;letter-spacing:-.04em;font-weight:650}
+.close span{display:block}.close .c2{color:var(--accent2)}.close .c3{color:#E3A04A}
+.close-sub{margin-top:40px;font-size:20px;color:#A9ADB6;max-width:760px;line-height:1.5}
+@page{size:1440px 810px;margin:0}
+@media print{html,body{background:none;width:1440px}body.present{overflow:visible;height:auto}.deck,.present .deck{position:static!important;transform:none!important;padding:0;margin:0;width:1440px}.slide,.present .slide{display:block!important;margin:0;break-after:page;page-break-after:always}.slide:last-child,.present .slide:last-child{break-after:auto;page-break-after:auto}}
+</style></head><body>
+<main class='deck'>
+
+<section class='slide dark'>
+<div class='kicker'>Team AI · Concept presentation</div>
+<h1 class='hero'>AI made individuals more capable.<span>It’s time it did the same for teams.</span></h1>
+<p class='hero-sub'>A shared workspace where teams work with AI together — including reusable bots that take real action across work tools, within permissions, with people approving what matters.</p>
+<svg class='orbit' width='440' height='440' viewBox='0 0 440 440' aria-hidden='true'><circle cx='220' cy='220' r='190' fill='none' stroke='#262A32'/><circle cx='220' cy='220' r='120' fill='none' stroke='#262A32' stroke-dasharray='3 6'/><g stroke='#3D424D' stroke-width='1.5' stroke-dasharray='4 6'><line x1='220' y1='30' x2='220' y2='220'/><line x1='401' y1='161' x2='220' y2='220'/><line x1='332' y1='374' x2='220' y2='220'/><line x1='108' y1='374' x2='220' y2='220'/><line x1='39' y1='161' x2='220' y2='220'/></g><g stroke='#E3A04A' stroke-opacity='.55' stroke-width='1.5'><line x1='290' y1='123' x2='220' y2='220'/><line x1='334' y1='257' x2='220' y2='220'/><line x1='220' y1='340' x2='220' y2='220'/><line x1='106' y1='257' x2='220' y2='220'/><line x1='150' y1='123' x2='220' y2='220'/></g><rect x='160' y='160' width='120' height='120' rx='30' fill='#2E4BE0'/><rect x='186' y='194' width='68' height='8' rx='4' fill='#fff' opacity='.92'/><rect x='186' y='216' width='52' height='8' rx='4' fill='#fff' opacity='.6'/><rect x='186' y='238' width='36' height='8' rx='4' fill='#fff' opacity='.38'/><g fill='#111317' stroke='#C9CCD3' stroke-width='1.5'><circle cx='220' cy='30' r='13'/><circle cx='401' cy='161' r='13'/><circle cx='332' cy='374' r='13'/><circle cx='108' cy='374' r='13'/><circle cx='39' cy='161' r='13'/></g><g fill='#E3A04A'><rect x='281' y='114' width='18' height='18' rx='4'/><rect x='325' y='248' width='18' height='18' rx='4'/><rect x='211' y='331' width='18' height='18' rx='4'/><rect x='97' y='248' width='18' height='18' rx='4'/><rect x='141' y='114' width='18' height='18' rx='4'/></g></svg>
+<div class='legend'><span><i style='border:1.5px solid #C9CCD3;border-radius:50%'></i>People</span><span><i style='background:#E3A04A;border-radius:2px'></i>Shared bots</span><span><i style='background:#2E4BE0;border-radius:3px'></i>One workspace</span></div>
+<div class='foot'><span>Product vision — interfaces shown are concepts</span><span>01 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>Today</div>
+<h2 class='h2'>The tools do more, but your team is still the glue.</h2>
+<div class='s2grid'>
+<svg width='740' height='419' viewBox='0 0 760 430' aria-hidden='true'><circle cx='380' cy='215' r='82' fill='none' stroke='#C7791F' stroke-opacity='.45' stroke-dasharray='3 5'/><g stroke='#A7A39A' stroke-width='1.5' stroke-dasharray='4 5'><line x1='380' y1='215' x2='104' y2='58'/><line x1='380' y1='215' x2='656' y2='58'/><line x1='380' y1='215' x2='94' y2='215'/><line x1='380' y1='215' x2='666' y2='215'/><line x1='380' y1='215' x2='104' y2='372'/><line x1='380' y1='215' x2='656' y2='372'/></g><g fill='#FFFFFF' stroke='#DDD7CB'><rect x='16' y='30' width='176' height='56' rx='12'/><rect x='568' y='30' width='176' height='56' rx='12'/><rect x='6' y='187' width='176' height='56' rx='12'/><rect x='578' y='187' width='176' height='56' rx='12'/><rect x='16' y='344' width='176' height='56' rx='12'/><rect x='568' y='344' width='176' height='56' rx='12'/></g><g font-family='Inter,-apple-system,Segoe UI,Helvetica,Arial,sans-serif' font-size='14' font-weight='600' fill='#16181D' text-anchor='middle'><text x='104' y='63'>Private chat · Sales</text><text x='656' y='63'>Private chat · Product</text><text x='94' y='220'>One-off automation</text><text x='666' y='220'>Docs &amp; wiki</text><text x='104' y='377'>Ticket tracker</text><text x='656' y='377'>Team chat</text></g><g font-family='ui-monospace,Menlo,Consolas,monospace' font-size='12' fill='#7E8189' text-anchor='middle' stroke='#F4F1EA' stroke-width='8' stroke-linejoin='round' style='paint-order:stroke'><text x='242' y='140'>copy context</text><text x='518' y='140'>re-explain</text><text x='237' y='209'>re-run by hand</text><text x='523' y='209'>paste output</text><text x='242' y='300'>check what ran</text><text x='518' y='300'>chase decisions</text></g><circle cx='380' cy='215' r='62' fill='#16181D'/><text x='380' y='213' text-anchor='middle' font-family='Inter,-apple-system,Segoe UI,Helvetica,Arial,sans-serif' font-size='15' font-weight='700' fill='#FFFFFF'>Your team</text><text x='380' y='233' text-anchor='middle' font-family='ui-monospace,Menlo,Consolas,monospace' font-size='10.5' letter-spacing='1.5' fill='#8DA0FF'>THE GLUE</text></svg>
+<div class='aside'>
+<p class='intro'>Your team’s AI work is scattered across tools, private chats and one-off automations. People copy context, pass along outputs and keep track of what’s happening.</p>
+<p class='note'><b>Strong individual tools aren’t the problem</b> — many already add team features. But individual power, on its own, doesn’t create:</p>
+<ul class='gaps'><li><span><b>Shared ownership</b> — who is responsible for a process.</span></li><li><span><b>Reuse</b> — the whole team using and improving what one person built.</span></li><li><span><b>Visibility</b> — what’s running, what changed, what needs a decision.</span></li></ul>
+</div></div>
+<div class='foot'><span>Team AI · Concept presentation</span><span>02 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>The shift</div>
+<h2 class='h2'>One shared workspace where teams work with AI — together.</h2>
+<div class='tiles'>
+<div class='tile'><div class='n'>01</div><svg viewBox='0 0 40 40'><rect x='9' y='6' width='22' height='28' rx='3'/><path d='M14 14h12M14 20h12M14 26h7'/></svg><h3>Context stays with the work</h3><p>Knowledge, files and decisions live next to the process — not in someone’s private chat.</p></div>
+<div class='tile'><div class='n'>02</div><svg viewBox='0 0 40 40'><path d='M30 16a11 11 0 0 0-20-2M10 24a11 11 0 0 0 20 2'/><path d='M10 8v6h6M30 32v-6h-6'/></svg><h3>Automations become team assets</h3><p>What one person builds, the whole team can use and improve.</p></div>
+<div class='tile'><div class='n'>03</div><svg viewBox='0 0 40 40'><circle cx='17' cy='14' r='6'/><path d='M6 33c1-6 6-9 11-9s8 2 9.5 5'/><path d='M26 30l3 3 6-7'/></svg><h3>Every process has an owner</h3><p>A named person is accountable for how it runs and how it changes.</p></div>
+<div class='tile'><div class='n'>04</div><svg viewBox='0 0 40 40'><path d='M4 20s6-10 16-10 16 10 16 10-6 10-16 10S4 20 4 20z'/><circle cx='20' cy='20' r='4'/></svg><h3>Everyone sees the state of work</h3><p>What’s running, what’s changed, and what needs a decision.</p></div>
+</div>
+<div class='shift'><div class='from'><div class='lab'>From</div><p>Private chats · copied context · one-off scripts · status by asking around</p></div><div class='arr'>→</div><div class='to'><div class='lab'>To</div><p>Shared context · shared bots · named owners · one visible picture</p></div></div>
+<div class='foot'><span>Team AI · Concept presentation</span><span>03 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>Shared bots</div>
+<div class='head-row'><h2 class='h2 s'>Bots that don’t just answer. They do the work — for the whole team.</h2><p class='lede'>Reusable bots the team can run, each with an owner, a chosen model, clear permissions and a visible run status.</p></div>
+<div class='win app'><div class='bar'><div class='dots'><i></i><i></i><i></i></div><b>Team AI</b><span>Bots</span><span class='cpt'>Concept UI</span></div>
+<div class='body'>
+<div class='side'><div class='ws'><i></i>Your company</div><ul class='nav'><li>Home</li><li class='on'>Bots</li><li>Runs</li><li>Decisions <span class='badge'>3</span></li><li>Knowledge</li><li>Processes</li></ul><div class='sub'>Teams</div><ul class='nav'><li>Support</li><li>Sales</li><li>Product</li></ul></div>
+<div class='main'><div class='mhead'><h3>Shared bots</h3><span class='chip on'>All teams</span><span class='chip'>Running</span><span class='chip'>Needs approval</span><span class='btn pri'>+ New bot</span></div>
+<div class='tbl'><div class='tr th'><span>Bot</span><span>Acts in</span><span>Owner</span><span>Model</span><span>Status</span></div>
+<div class='tr'><div><div class='bn'>Escalation triage</div><div class='bd'>Drafts replies and opens issues for urgent tickets</div></div><div><span class='tool'>Support desk</span><span class='tool'>CRM</span><span class='tool'>Issue tracker</span></div><div class='who'><span class='av a1'>L</span><span>Lena<br><small>Support Ops</small></span></div><div><span class='model'>Model B</span></div><div><span class='st wait'>Needs approval</span></div></div>
+<div class='tr'><div><div class='bn'>Weekly pipeline review</div><div class='bd'>Flags stalled deals, posts a weekly summary</div></div><div><span class='tool'>CRM</span><span class='tool'>Team chat</span></div><div class='who'><span class='av a2'>O</span><span>Omar<br><small>Sales</small></span></div><div><span class='model'>Model A</span></div><div><span class='st run'>Running · 3/5</span></div></div>
+<div class='tr'><div><div class='bn'>Release notes</div><div class='bd'>Drafts notes from merged changes, schedules post</div></div><div><span class='tool'>Code repo</span><span class='tool'>Docs</span><span class='tool'>Calendar</span></div><div class='who'><span class='av a4'>P</span><span>Priya<br><small>Product</small></span></div><div><span class='model'>Model C</span></div><div><span class='st idle'>Scheduled · Fri</span></div></div>
+<div class='tr'><div><div class='bn'>New-hire setup</div><div class='bd'>Sets up accounts, channels and intro meetings</div></div><div><span class='tool'>HR system</span><span class='tool'>Team chat</span><span class='tool'>Calendar</span></div><div class='who'><span class='av a6'>S</span><span>Sam<br><small>People Ops</small></span></div><div><span class='model'>Model A</span></div><div><span class='st done'>Done · today</span></div></div>
+<div class='tr'><div><div class='bn'>Invoice follow-up</div><div class='bd'>Matches unpaid invoices, drafts reminders</div></div><div><span class='tool'>Accounting</span><span class='tool'>Email</span></div><div class='who'><span class='av a3'>D</span><span>Dana<br><small>Finance</small></span></div><div><span class='model'>Model B</span></div><div><span class='st off'>Paused by owner</span></div></div>
+</div></div></div></div>
+<div class='foot'><span>Team AI · Concept presentation · Tool and model names are placeholders</span><span>04 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>Inside a run</div>
+<div class='head-row'><h2 class='h2 s'>Every run is visible. Important steps wait for a person.</h2><p class='lede'>Bots take concrete actions across work tools. Routine steps run within permissions; anything external or irreversible stops for the owner.</p></div>
+<div class='win app'><div class='bar'><div class='dots'><i></i><i></i><i></i></div><b>Escalation triage</b><span>›</span><span>Run 214</span><span class='st wait'>Waiting for approval</span><span class='cpt'>Concept UI</span></div>
+<div class='runb'>
+<div class='rl'><div class='meta'><div class='who'><span class='av a1'>L</span><span><b>Lena</b> · owner</span></div><span>Model: <b>Model B</b></span><span>Trigger: <b>new urgent ticket</b></span><span>Started <b>09:42</b></span></div>
+<div class='steps'>
+<div class='step'><span class='ic ok'>✓</span><div><div class='t'>Read ticket #8812<span class='tool'>Support desk</span></div><div class='d'>Exports failing since the last update</div></div><span class='tm'>09:42</span></div>
+<div class='step'><span class='ic ok'>✓</span><div><div class='t'>Pull account context<span class='tool'>CRM</span></div><div class='d'>Plan, open issues, last three conversations</div></div><span class='tm'>09:42</span></div>
+<div class='step'><span class='ic ok'>✓</span><div><div class='t'>Apply escalation runbook<span class='tool'>Knowledge</span></div><div class='d'>The team’s own process, version 4</div></div><span class='tm'>09:43</span></div>
+<div class='step hl'><span class='ic ps'>‖</span><div><div class='t'>Send reply to customer<span class='tool'>Support desk</span></div><div class='d'>External message · team policy: owner approves</div></div><span class='st wait'>Needs approval</span></div>
+<div class='step'><span class='ic q'></span><div><div class='t'>Open engineering issue<span class='tool'>Issue tracker</span></div><div class='d'>Within the bot’s permissions</div></div><span class='tm'>Queued</span></div>
+<div class='step'><span class='ic q'></span><div><div class='t'>Post summary<span class='tool'>Team chat</span></div><div class='d'>To the support escalations channel</div></div><span class='tm'>Queued</span></div>
+</div></div>
+<div class='rr'><div class='dl'>Decision needed</div><h3>Send reply to customer</h3><p class='by'>Requested by Escalation triage · for Lena, owner</p>
+<div class='draft'><div class='to'>To customer · via Support desk</div>Hi Jordan — thanks for flagging this. We’re seeing the export issue too, and our engineers are looking into it now. We’ll update you by end of day tomorrow.</div>
+<p class='why'><b>Why it’s waiting:</b> it’s an external message to a customer.</p>
+<div class='acts'><span class='btn pri'>Approve &amp; send</span><span class='btn'>Edit draft</span><span class='btn'>Decline</span></div>
+<p class='after'>After a decision, queued steps continue within the bot’s permissions. Every step is recorded.</p></div>
+</div></div>
+<div class='foot'><span>Team AI · Concept presentation · Illustrative run, not a live product</span><span>05 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>Guardrails</div>
+<h2 class='h2'>Bots act within permissions. People approve what matters.</h2>
+<div class='scale'><span>Lower impact</span><span class='ln'></span><span>Higher impact · more human control</span></div>
+<div class='tiers'>
+<div class='tier' style='--c:#C3CCF6'><div class='lv'>01</div><h3>Read</h3><p>Look up tickets, records and docs the bot’s role can see.</p><span class='rule idle'>Allowed by role</span></div>
+<div class='tier' style='--c:#8DA0FF'><div class='lv'>02</div><h3>Draft</h3><p>Prepare replies, issues and summaries — visible, not sent.</p><span class='rule done'>Logged</span></div>
+<div class='tier' style='--c:#2E4BE0'><div class='lv'>03</div><h3>Act inside the team</h3><p>Open an issue, post to team chat, update a field.</p><span class='rule idle'>Owner enables</span></div>
+<div class='tier' style='--c:#C7791F'><div class='lv'>04</div><h3>Act outside, or irreversibly</h3><p>Message a customer, change billing, delete data.</p><span class='rule wait'>Human approval</span></div>
+<div class='tier x' style='--c:#9C3B2E'><div class='lv'>05</div><h3>Outside permissions</h3><p>Anything the bot’s role doesn’t cover.</p><span class='rule off'>Not available</span></div>
+</div>
+<div class='win log'><div class='bar'><div class='dots'><i></i><i></i><i></i></div><b>Activity log</b><span>Escalation triage · today</span><span class='cpt'>Concept UI</span></div>
+<div class='lg'>
+<div class='lr'><span>09:42</span><span>Escalation triage</span><span>Read ticket #8812 and account context</span><span>Support desk · CRM</span></div>
+<div class='lr'><span>09:43</span><span>Escalation triage</span><span>Drafted a customer reply — held for approval</span><span>Support desk</span></div>
+<div class='lr'><span>09:51</span><span>Lena · owner</span><span><b>Approved</b> “Send reply” after editing one line</span><span>Support desk</span></div>
+<div class='lr'><span>09:51</span><span>Escalation triage</span><span>Opened issue ENG-482 and posted a summary</span><span>Issue tracker · Team chat</span></div>
+</div></div>
+<div class='foot'><span>Team AI · Concept presentation · Permission model is a design direction</span><span>06 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>The shared picture</div>
+<div class='head-row'><h2 class='h2 s'>What’s running, what’s changed, and what needs a decision.</h2><p class='lede'>Optional, later: bots that notice work worth doing and propose it here — as a suggestion, never as an action.</p></div>
+<div class='win app'><div class='bar'><div class='dots'><i></i><i></i><i></i></div><b>Team AI</b><span>This week · Support, Sales, Product, Finance</span><span class='cpt'>Concept UI</span></div>
+<div class='board'>
+<div class='col'><div class='colh'><span class='st run'>Running</span><span class='cnt'>3</span></div>
+<div class='card'><div class='t'>Weekly pipeline review</div><div class='d'>Step 3 of 5 · reading this week’s CRM changes</div><div class='f'><div class='who'><span class='av a2'>O</span>Omar</div><span class='model'>Model A</span></div></div>
+<div class='card'><div class='t'>New-hire setup</div><div class='d'>Step 4 of 6 · booking intro meetings</div><div class='f'><div class='who'><span class='av a6'>S</span>Sam</div><span class='model'>Model A</span></div></div>
+<div class='card'><div class='t'>Contract summary</div><div class='d'>Step 1 of 3 · reading a new agreement in Docs</div><div class='f'><div class='who'><span class='av a7'>I</span>Ines</div><span class='model'>Model B</span></div></div></div>
+<div class='col'><div class='colh'><span class='st idle'>Changed</span><span class='cnt'>3</span></div>
+<div class='card'><div class='t'>Escalation triage → v5</div><div class='d'>Now checks the team runbook before drafting</div><div class='f'><div class='who'><span class='av a1'>L</span>Lena</div><span class='st done'>Approved</span></div></div>
+<div class='card'><div class='t'>Release notes</div><div class='d'>Moved to Model C after a quality check</div><div class='f'><div class='who'><span class='av a4'>P</span>Priya</div><span class='st done'>Approved</span></div></div>
+<div class='card'><div class='t'>Refund policy</div><div class='d'>Knowledge updated · used by two bots</div><div class='f'><div class='who'><span class='av a3'>D</span>Dana</div><span class='st done'>Edited</span></div></div></div>
+<div class='col'><div class='colh'><span class='st wait'>Needs a decision</span><span class='cnt'>3</span></div>
+<div class='card'><div class='t'>Send reply to customer</div><div class='d'>Escalation triage · external message</div><div class='f'><div class='who'><span class='av a1'>L</span>Lena</div><span class='btn pri'>Review</span></div></div>
+<div class='card'><div class='t'>Suggested change: churn-risk flag</div><div class='d'>From Ana for Weekly pipeline review</div><div class='f'><div class='who'><span class='av a2'>O</span>Omar</div><span class='btn'>Review</span></div></div>
+<div class='card'><div class='t'>Invoice follow-up paused</div><div class='d'>Two records don’t match accounting</div><div class='f'><div class='who'><span class='av a3'>D</span>Dana</div><span class='btn'>Resolve</span></div></div></div>
+</div></div>
+<div class='foot'><span>Team AI · Concept presentation</span><span>07 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>Reuse</div>
+<h2 class='h2'>Built once. Used by the team. Improved by the team.</h2>
+<div class='flow'>
+<div class='fs'><div class='n'>01</div><h3>Build</h3><p>Someone turns a real process into a bot.</p></div>
+<div class='fs'><div class='n'>02</div><h3>Share</h3><p>The team runs it — no re-setup, no copied prompts.</p></div>
+<div class='fs'><div class='n'>03</div><h3>Suggest</h3><p>Anyone proposes an improvement from real use.</p></div>
+<div class='fs'><div class='n'>04</div><h3>Review</h3><p>The owner checks and approves the change.</p></div>
+<div class='fs'><div class='n'>05</div><h3>Everyone benefits</h3><p>The better version is live for the whole team.</p></div>
+</div>
+<div class='s8b'>
+<div class='win'><div class='bar'><div class='dots'><i></i><i></i><i></i></div><b>Weekly pipeline review</b><span>Version history · owner Omar</span><span class='cpt'>Concept UI</span></div>
+<div class='vr'><span class='vn'>v5</span><div class='who'><span class='av a5'>A</span><span>Ana<br><small>Sales</small></span></div><span>Flag deals with no activity for 14 days</span><span class='st wait'>Owner review</span></div>
+<div class='vr'><span class='vn'>v4</span><div class='who'><span class='av a2'>O</span><span>Omar<br><small>Owner</small></span></div><span>Post the summary to the sales channel, not DMs</span><span class='st run'>Live</span></div>
+<div class='vr'><span class='vn'>v3</span><div class='who'><span class='av a6'>K</span><span>Kai<br><small>RevOps</small></span></div><span>Use updated stage definitions from Knowledge</span><span class='st done'>Previous</span></div>
+<div class='vr'><span class='vn'>v2</span><div class='who'><span class='av a2'>O</span><span>Omar<br><small>Owner</small></span></div><span>Add a next-step owner to each flagged deal</span><span class='st done'>Previous</span></div>
+</div>
+<div class='pull'><p>The work improves where the team works — not inside someone’s private setup.</p><small>Every change has an author, a reason and the owner’s approval.</small></div>
+</div>
+<div class='foot'><span>Team AI · Concept presentation</span><span>08 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>Ownership</div>
+<h2 class='h2'>Your company should own the intelligence it builds.</h2>
+<div class='s9grid'>
+<div class='stack'>
+<div class='ly ly1'><div class='lab'>Company-owned</div><h3>Your intelligence</h3><div class='chips'><span>Knowledge</span><span>Processes</span><span>Ways of working</span><span>Decisions &amp; history</span><span>Bots &amp; automations</span></div></div>
+<div class='ly ly2'><div class='lab'>Shared workspace</div><h3>Where the team works with it</h3><p>Owners · permissions · approvals · run history</p></div>
+<div class='ly ly3'><div class='lab'>Supported models · chosen per job</div><div class='row'><span class='model'>Model A</span><span class='model'>Model B</span><span class='model'>Model C</span><p>Interchangeable layer — not the place where your knowledge lives.</p></div></div>
+</div>
+<div class='mean'>
+<div><div class='lab'>What we mean</div><ul><li><i>✓</i><span>Knowledge, processes and ways of working live in the company’s workspace — not scattered across individual accounts.</span></li><li><i>✓</i><span>They aren’t tied to any one model.</span></li><li><i>✓</i><span>They stay with the team as roles, bots and models change.</span></li></ul></div>
+<div class='no'><div class='lab'>What we don’t mean</div><ul><li><i>✕</i><span>Owning third-party model weights.</span></li><li><i>✕</i><span>A finished universal export-and-restore. That must be built and demonstrated before we promise it.</span></li></ul></div>
+</div></div>
+<div class='foot'><span>Team AI · Concept presentation · Ownership is a product vision</span><span>09 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>Model choice</div>
+<h2 class='h2'>Choose the right model for the job — without starting over.</h2>
+<div class='s10grid'>
+<div class='win'><div class='bar'><div class='dots'><i></i><i></i><i></i></div><b>Release notes</b><span>Settings › Model</span><span class='cpt'>Concept UI</span></div>
+<div class='set'><div class='setl'><span class='lab2'>Model for this bot</span><span class='lab2'>Supported models only</span></div>
+<div class='opt'><span class='r'></span><div><b>Model A</b><span>Fast drafting</span></div><span class='st done'>Current</span></div>
+<div class='opt'><span class='r'></span><div><b>Model B</b><span>Deeper reasoning, long documents</span></div><span></span></div>
+<div class='opt sel'><span class='r'></span><div><b>Model C</b><span>Structured writing</span></div><span class='st wait'>Proposed · in check</span></div>
+<div class='two'>
+<div class='box'><span class='lab2'>Stays with the bot</span><ul><li>Knowledge sources<em>kept</em></li><li>Process steps<em>kept</em></li><li>Permissions &amp; approvals<em>kept</em></li><li>Run history<em>kept</em></li></ul><p class='cap'>Context lives in the workspace, not in the model.</p></div>
+<div class='box'><span class='lab2'>Quality check first</span><ul><li>Replay on recent runs<em>done</em></li><li>Side-by-side review<em class='a'>in review</em></li><li>Owner approves switch<em class='g'>next</em></li></ul><p class='cap'>A change goes live only after it holds up on real work.</p></div>
+</div></div></div>
+<div><ul class='claims'>
+<li><div class='n'>01</div><h3>Per-bot choice</h3><p>Each bot can use a different supported model — fast where speed matters, deeper where judgment does.</p></li>
+<li><div class='n'>02</div><h3>Context stays put</h3><p>Knowledge, process steps and history belong to the team, so a switch doesn’t mean starting over.</p></li>
+<li><div class='n'>03</div><h3>Checked, not assumed</h3><p>Models behave differently. A switch is tested on real work and approved by the owner.</p></li>
+</ul><p class='fine'>Not a promise of universal compatibility, and not a way to pool or transfer subscriptions.</p></div>
+</div>
+<div class='foot'><span>Team AI · Concept presentation · Model names are placeholders</span><span>10 / 13</span></div>
+</section>
+
+<section class='slide dark'>
+<div class='kicker'>The role of people</div>
+<h2 class='big'>People shouldn’t have to carry work between AIs.<span>They should decide what’s worth doing — and approve what matters.</span></h2>
+<div class='ba'><div><div class='lab'>Today</div><p>Copy · paste · re-explain · chase</p></div><div class='arr'>→</div><div class='to'><div class='lab'>With Team AI</div><p>Decide · approve · improve</p></div></div>
+<div class='foot'><span>Team AI · Concept presentation</span><span>11 / 13</span></div>
+</section>
+
+<section class='slide'>
+<div class='kicker'>Claim boundaries</div>
+<div class='head-row'><h2 class='h2 s'>A product vision — and what we’ll prove before we promise it.</h2><p class='lede'>Everything shown is a concept. These are the questions we answer with real teams before any external product promise.</p></div>
+<div class='checks'>
+<div class='ck'><div class='n'>01</div><h3>Team access &amp; permissions</h3><p>Real roles, scopes, and who can approve what.</p></div>
+<div class='ck'><div class='n'>02</div><h3>Export with proven restore</h3><p>Context and automations leave and come back intact — demonstrated, not assumed.</p></div>
+<div class='ck'><div class='n'>03</div><h3>Portability across models</h3><p>Every switch backed by quality checks on real work.</p></div>
+<div class='ck'><div class='n'>04</div><h3>Supported integrations</h3><p>Which work tools, and which actions, confirmed one by one.</p></div>
+<div class='ck'><div class='n'>05</div><h3>Decision &amp; action log</h3><p>A complete, trustworthy record of who did what, and who approved it.</p></div>
+<div class='ck'><div class='n'>06</div><h3>Limits of autonomy</h3><p>Where bots may act alone, and where they must stop and ask.</p></div>
+</div>
+<div class='s12b'>
+<div class='nb'><b>We’re not the only ones building here.</b>Other products already offer shared agents, team context, workflows and human approvals. We don’t claim uniqueness; differences in self-hosting, data ownership and workflow portability are what we’ll need to show.</div>
+<div class='nb lt'><b>Open hypotheses</b>Market uniqueness and willingness to pay are hypotheses to test with teams — not findings.</div>
+</div>
+<div class='foot'><span>Team AI · Concept presentation</span><span>12 / 13</span></div>
+</section>
+
+<section class='slide dark'>
+<div class='kicker'>Team AI</div>
+<h2 class='close'><span>Your team.</span><span class='c2'>Your intelligence.</span><span class='c3'>Your choice of models.</span></h2>
+<p class='close-sub'>A shared workspace where teams work with AI — and with bots that act — on intelligence the company owns.</p>
+<div class='foot'><span>Team AI · Product vision · Concept presentation</span><span>13 / 13</span></div>
+</section>
+
+</main>
+<script>
+(function(){if(location.search.indexOf('all')>-1)return;var d=document.querySelector('.deck'),s=[].slice.call(document.querySelectorAll('.slide')),i=0;document.body.classList.add('present');
+function fit(){var w=window.innerWidth,h=window.innerHeight,k=Math.min(w/1440,h/810);d.style.transform='translate('+(w-1440*k)/2+'px,'+(h-810*k)/2+'px) scale('+k+')'}
+function go(n){i=Math.max(0,Math.min(s.length-1,n));s.forEach(function(el,j){el.classList.toggle('active',j===i)});try{history.replaceState(null,'','#'+(i+1))}catch(err){}}
+document.addEventListener('keydown',function(e){var k=e.key;if(k==='ArrowRight'||k==='ArrowDown'||k==='PageDown'||k===' '){e.preventDefault();go(i+1)}else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();go(i-1)}else if(k==='Home'){go(0)}else if(k==='End'){go(s.length-1)}});
+window.addEventListener('resize',fit);window.addEventListener('beforeprint',function(){d.style.transform='none'});window.addEventListener('afterprint',fit);
+var n=parseInt((location.hash||'').slice(1),10);go(n>0?n-1:0);fit();})();
+</script>
+</body></html>
